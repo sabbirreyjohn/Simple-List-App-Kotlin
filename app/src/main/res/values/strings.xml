@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Basic List App</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="list_fragment_label">List Fragment</string>
+    <string name="details_fragment_label">Details Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello list fragment</string>
+    <string name="hello_second_fragment">Hello details fragment. Arg: %1$s</string>
+    <string name="picture_title">This is the title of the photo</string>
+</resources>
