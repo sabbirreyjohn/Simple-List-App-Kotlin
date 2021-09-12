@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
 import xyz.androidrey.basiclistapp.R
 import xyz.androidrey.basiclistapp.adapter.OnPictureItemClickedListener
 import xyz.androidrey.basiclistapp.adapter.PictureAdapter
@@ -18,12 +19,13 @@ import xyz.androidrey.basiclistapp.navigate
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
 
     private val viewModel: ListViewModel by viewModels()
 
-    val onPictureItemClickedListener =  object : OnPictureItemClickedListener{
+    private val onPictureItemClickedListener =  object : OnPictureItemClickedListener{
         override fun onItemClicked(data: Picture) {
             navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(data))
         }
@@ -32,7 +34,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
