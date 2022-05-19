@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import xyz.androidrey.basiclistapp.R
 import xyz.androidrey.basiclistapp.databinding.FragmentDetailsBinding
 import xyz.androidrey.basiclistapp.model.Picture
@@ -14,6 +15,7 @@ import xyz.androidrey.basiclistapp.model.Picture
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null

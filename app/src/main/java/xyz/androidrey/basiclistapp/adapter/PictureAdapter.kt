@@ -1,6 +1,5 @@
 package xyz.androidrey.basiclistapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -11,7 +10,7 @@ import xyz.androidrey.basiclistapp.databinding.RowPictureItemBinding
 import xyz.androidrey.basiclistapp.model.Picture
 import xyz.androidrey.basiclistapp.ui.listscreen.ListFragmentDirections
 
-class PictureAdapter : ListAdapter<Picture,
+class PictureAdapter(private val listener: OnPictureItemClickedListener) : ListAdapter<Picture,
         PictureAdapter.TheViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(
@@ -27,9 +26,8 @@ class PictureAdapter : ListAdapter<Picture,
 
     override fun onBindViewHolder(holder: TheViewHolder, position: Int) {
         val marsPhoto = getItem(position)
-        holder.bind(marsPhoto)
+        holder.bind(marsPhoto, listener)
     }
-
 
     class TheViewHolder(
         private var binding:
@@ -37,14 +35,12 @@ class PictureAdapter : ListAdapter<Picture,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(picture: Picture) {
+        fun bind(picture: Picture, listener: OnPictureItemClickedListener) {
             binding.picture = picture
             binding.executePendingBindings()
             binding.root.setOnClickListener {
-                val action = ListFragmentDirections.actionListFragmentToDetailsFragment(picture)
-                binding.root.findNavController().navigate(action)
+                listener.onItemClicked(picture)
             }
-
         }
     }
 
@@ -57,4 +53,8 @@ class PictureAdapter : ListAdapter<Picture,
             return oldItem.picThumbnail == newItem.picThumbnail
         }
     }
+}
+
+interface OnPictureItemClickedListener {
+    fun onItemClicked(data: Picture)
 }

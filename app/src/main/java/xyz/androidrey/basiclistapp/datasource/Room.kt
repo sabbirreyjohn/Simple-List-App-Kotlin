@@ -9,13 +9,13 @@ import xyz.androidrey.basiclistapp.model.Picture
 @Dao
 interface PictureDao {
     @Query("select * from Picture")
-    fun getPictures(): LiveData<List<Picture>>
+    fun getPictures(): LiveData<List<Picture>?>  //Flow<List<PasswordData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(pictures: List<Picture>)
 }
 
-@Database(entities = [Picture::class], version = 1)
+@Database(entities = [Picture::class], version = 1, exportSchema = false)
 abstract class PicturesDatabase : RoomDatabase() {
     abstract val pictureDao: PictureDao
 }

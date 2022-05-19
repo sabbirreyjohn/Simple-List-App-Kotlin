@@ -34,7 +34,7 @@ fun bindRecyclerView(
 }
 
 @BindingAdapter("srcByApiStatus")
-fun bindByApiStatus(imageView: ImageView, status: ApiStatus) {
+fun bindByApiStatus(imageView: ImageView, status: ApiStatus?) {
 
     when (status) {
         ApiStatus.DONE -> {
